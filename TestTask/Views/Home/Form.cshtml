@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Form";
+    
+}
+@if (!ViewBag.isGen)
+{
+ 
+        <h3>Выберете период за который вы хотите получить отчет</h3>
+        <form method="post" action="">
+            <Ul>
+
+                <li>
+                    <p>Введите дату начала:</p>
+                    <input type="date" name="Date1" required />
+                </li>
+                <li>
+                    <p>Введите дату окончания:</p>
+                    <input type="date" name="Date2" required/>
+                </li>
+                <br />
+                <input type="submit" value="Генерировать отчет" />
+
+            </Ul>
+        </form>
+
+}
+    @if (ViewBag.isGen)
+    {
+       <p>Начало поиска: @ViewBag.firstDate</p>
+       <p>Конец поиска: @ViewBag.secondDate</p>
+    <form action="/Home/Report/" method="get">
+        <input type="submit" value="Отравить письмо на почту"/>
+    </form>
+        <table border="1">
+            <tr>
+                <th>Номер заказа</th>
+                <th>Дата заказа</th>
+                <th>Код Продукта</th>
+                <th>Название продукта</th>
+                <th>Цена за штуку</th>
+                <th>Количество</th>
+                <th>Общая цена</th>
+            </tr>
+            @foreach (var b in ViewBag.OrderDetail)
+                {
+                <tr>
+                    <td><p>@b.OrderID</p></td>
+                    <td><p>@b.Order.OrderDate.ToString("dd-MM-yyyy")</p></td>
+                    <td><p>@b.ProductID</p></td>
+                    <td><p>@b.Product.Name</p></td>
+                    <td><p>@b.UnitPrice</p></td>
+                    <td><p>@b.Quantity</p></td>
+                    <td><p>@(b.UnitPrice * b.Quantity)</p></td>
+                    
+                </tr>  }
+        </table>
+
+    }

@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Report";
+}
+
+@if (ViewBag.Error != null)
+{
+    <h2>@ViewBag.Error</h2>
+    <h3><a href="/Home/Form/">Пересоздать отчет</a></h3>
+}
+
+    <h2>Report</h2>
+
+
+    <h3>Укажите ваш адрес электронной почты для отправки отчета</h3>
+    <form method="post" action="">
+        <Ul>
+
+            <li>
+                <p>Email</p>
+                <input type="email" name="Email" />
+            </li>
+            <br />
+            <input type="submit" value="Отправить" />
+
+        </Ul>
+    </form>
+
+
